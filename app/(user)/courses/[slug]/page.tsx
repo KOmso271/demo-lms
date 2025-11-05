@@ -44,7 +44,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-t from-5% from-gray-300/60 to-gray-300/20 dark:from-black dark:to-black/60" />
         <div className="absolute inset-0 container mx-auto px-4 flex flex-col justify-end pb-12">
           <Link
             href="/"
@@ -57,19 +57,22 @@ export default async function CoursePage({ params }: CoursePageProps) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="px-3 py-1 bg-white/10 text-white rounded-full text-sm font-medium backdrop-blur-sm">
+                <span className="px-3 py-1 bg-white/10 text-black dark:text-white rounded-full text-sm font-medium backdrop-blur-sm">
                   {course.category?.name || "Uncategorized"}
                 </span>
+                <span className="px-3 py-1 bg-white/10 text-black dark:text-white rounded-full text-sm font-medium backdrop-blur-sm">
+                  {course._id || "Uncategorized"}
+                </span>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
                 {course.title}
               </h1>
-              <p className="text-lg text-white/90 max-w-2xl">
+              <p className="text-lg text-black/90 dark:text-white/90 max-w-2xl">
                 {course.description}
               </p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:min-w-[300px]">
-              <div className="text-3xl font-bold text-white mb-4">
+              <div className="text-3xl font-bold text-black dark:text-white mb-4">
                 {course.price === 0 ? "Free" : `$${course.price}`}
               </div>
               <EnrollButton courseId={course._id} isEnrolled={isEnrolled} />

@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SanityLive } from "@/sanity/lib/live";
-import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
+import { SidebarProvider } from "@/components/SidebarProvider";
 
-export default async function UserLayout({
+export const metadata: Metadata = {
+  title: "Dashboard - Courselly",
+  description: "Dashboard for Courselly application",
+};
+
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -18,10 +24,9 @@ export default async function UserLayout({
         enableSystem
         disableTransitionOnChange
       >
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-        </div>
+        <SidebarProvider>
+          <div className="h-full">{children}</div>
+        </SidebarProvider>
       </ThemeProvider>
 
       <SanityLive />
