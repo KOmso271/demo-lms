@@ -4,7 +4,7 @@ import { getLessonById } from "@/sanity/lib/lessons/getLessonById";
 import { PortableText } from "@portabletext/react";
 import { LoomEmbed } from "@/components/LoomEmbed";
 import { VideoPlayer } from "@/components/VideoPlayer";
-// import { LessonCompleteButton } from "@/components/LessonCompleteButton";
+import { LessonCompleteButton } from "@/components/LessonCompleteButton";
 
 interface LessonPageProps {
   params: Promise<{
@@ -51,7 +51,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
             )}
 
             <div className="flex justify-end">
-              {/* <LessonCompleteButton lessonId={lesson._id} clerkId={user!.id} /> */}
+              <LessonCompleteButton lessonId={lesson._id} clerkId={user!.id} />
             </div>
           </div>
         </div>

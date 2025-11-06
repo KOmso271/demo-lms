@@ -28,14 +28,17 @@ export default async function CourseLayout({
     return redirect(authResult.redirect!);
   }
 
-  const [course, progress] = await Promise.all([
-    getCourseById(courseId),
-    getCourseProgress(user.id, courseId),
-  ]);
+  // const [course, progress] = await Promise.all([
+  //   getCourseById(courseId),
+  //   getCourseProgress(user.id, courseId),
+  // ]);
 
+  const course = await getCourseById(courseId);
   if (!course) {
     return redirect("/my-courses");
   }
+
+  const progress = await getCourseProgress(user.id, courseId);
 
   return (
     <div className="h-full">
