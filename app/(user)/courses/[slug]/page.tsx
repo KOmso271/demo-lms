@@ -60,9 +60,6 @@ export default async function CoursePage({ params }: CoursePageProps) {
                 <span className="px-3 py-1 bg-white/10 text-black dark:text-white rounded-full text-sm font-medium backdrop-blur-sm">
                   {course.category?.name || "Uncategorized"}
                 </span>
-                <span className="px-3 py-1 bg-white/10 text-black dark:text-white rounded-full text-sm font-medium backdrop-blur-sm">
-                  {course._id || "Uncategorized"}
-                </span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-black dark:text-white mb-4">
                 {course.title}

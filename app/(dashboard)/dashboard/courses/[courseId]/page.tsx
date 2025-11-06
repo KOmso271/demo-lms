@@ -26,7 +26,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center space-y-4">
         <h2 className="text-4xl font-bold">Welcome to {course.title}</h2>
-        <p className="text-muted-foreground text-red-300">
+        <p className="text-muted-foreground">
           This course has no content yet. Please check back later.
         </p>
         <Button />

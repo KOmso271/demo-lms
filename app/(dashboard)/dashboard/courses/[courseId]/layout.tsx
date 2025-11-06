@@ -23,10 +23,10 @@ export default async function CourseLayout({
     return redirect("/");
   }
 
-  // const authResult = await checkCourseAccess(user?.id || null, courseId);
-  // if (!authResult.isAuthorized || !user?.id) {
-  //   return redirect(authResult.redirect!);
-  // }
+  const authResult = await checkCourseAccess(user?.id || null, courseId);
+  if (!authResult.isAuthorized || !user?.id) {
+    return redirect(authResult.redirect!);
+  }
 
   const [course, progress] = await Promise.all([
     getCourseById(courseId),
