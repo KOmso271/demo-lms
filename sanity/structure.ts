@@ -3,30 +3,30 @@ import { StructureBuilder } from "sanity/structure";
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure = (S: StructureBuilder) =>
   S.list()
-    .title("Admin Dashboard")
+    .title("Bảng điều khiển quản trị")
     .items([
       // Course Content
       S.listItem()
-        .title("Course Content")
+        .title("Quản lý khóa học")
         .child(
           S.documentTypeList("course")
-            .title("Courses")
+            .title("Khóa học")
             .child((courseId) =>
               S.list()
-                .title("Course Options")
+                .title("Tùy chọn khóa học")
                 .items([
                   // Option to edit course content
                   S.listItem()
-                    .title("Edit Course Content")
+                    .title("Chỉnh sửa nội dung khóa học")
                     .child(
                       S.document().schemaType("course").documentId(courseId)
                     ),
                   // Option to view course enrollments
                   S.listItem()
-                    .title("View Students")
+                    .title("Xem học viên")
                     .child(
                       S.documentList()
-                        .title("Course Enrollments")
+                        .title("Học viên đã đăng ký")
                         .filter(
                           '_type == "enrollment" && course._ref == $courseId'
                         )
@@ -40,25 +40,25 @@ export const structure = (S: StructureBuilder) =>
 
       // Users
       S.listItem()
-        .title("User Management")
+        .title("Quản lý người dùng")
         .child(
           S.list()
-            .title("Select a Type of User")
+            .title("Chọn loại người dùng")
             .items([
               // Instructors with options
               S.listItem()
-                .title("Instructors")
+                .title("Giảng viên")
                 .schemaType("instructor")
                 .child(
                   S.documentTypeList("instructor")
-                    .title("Instructors")
+                    .title("Giảng viên")
                     .child((instructorId) =>
                       S.list()
-                        .title("Instructor Options")
+                        .title("Tùy chọn giảng viên")
                         .items([
                           // Option to edit instructor details
                           S.listItem()
-                            .title("Edit Instructor Details")
+                            .title("Chỉnh sửa thông tin giảng viên")
                             .child(
                               S.document()
                                 .schemaType("instructor")
@@ -66,7 +66,7 @@ export const structure = (S: StructureBuilder) =>
                             ),
                           // Option to view instructor's courses
                           S.listItem()
-                            .title("View Courses")
+                            .title("Thông tin khóa học")
                             .child(
                               S.documentList()
                                 .title("Instructor's Courses")
@@ -80,18 +80,18 @@ export const structure = (S: StructureBuilder) =>
                 ),
               // Students with options
               S.listItem()
-                .title("Students")
+                .title("Học sinh")
                 .schemaType("student")
                 .child(
                   S.documentTypeList("student")
-                    .title("Students")
+                    .title("Học sinh")
                     .child((studentId) =>
                       S.list()
-                        .title("Student Options")
+                        .title("Tùy chọn học sinh")
                         .items([
                           // Option to edit student details
                           S.listItem()
-                            .title("Edit Student Details")
+                            .title("Chỉnh sửa thông tin học sinh")
                             .child(
                               S.document()
                                 .schemaType("student")
@@ -99,29 +99,14 @@ export const structure = (S: StructureBuilder) =>
                             ),
                           // Option to view enrollments
                           S.listItem()
-                            .title("View Enrollments")
+                            .title("Khóa học đã đăng ký")
                             .child(
                               S.documentList()
-                                .title("Student Enrollments")
+                                .title("Khóa học đã đăng ký")
                                 .filter(
                                   '_type == "enrollment" && student._ref == $studentId'
                                 )
                                 .params({ studentId })
-                            ),
-                          // Option to view completed lessons
-                          S.listItem()
-                            .title("View Completed Lessons")
-                            .child(
-                              S.documentList()
-                                .title("Completed Lessons")
-                                .schemaType("lessonCompletion")
-                                .filter(
-                                  '_type == "lessonCompletion" && student._ref == $studentId'
-                                )
-                                .params({ studentId })
-                                .defaultOrdering([
-                                  { field: "completedAt", direction: "desc" },
-                                ])
                             ),
                         ])
                     )
@@ -130,13 +115,4 @@ export const structure = (S: StructureBuilder) =>
         ),
 
       S.divider(),
-
-      // System Management
-      S.listItem()
-        .title("System Management")
-        .child(
-          S.list()
-            .title("System Management")
-            .items([S.documentTypeListItem("category").title("Categories")])
-        ),
     ]);

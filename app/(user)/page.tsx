@@ -1,6 +1,8 @@
 import { CourseCard } from "@/components/course/CourseCard";
-import Hero from "@/components/Hero";
+import Hero from "@/components/home/Hero";
+import Categories from "@/components/home/Categories";
 import { getCourses } from "@/sanity/lib/courses/getCourses";
+import Footer from "@/components/home/Footer";
 
 export const dynamic = "force-static";
 export const revalidate = 3600; // revalidate at most every hour
@@ -12,11 +14,13 @@ export default async function Home() {
     <div className=" min-h-screen bg-background">
       <Hero />
 
+      <Categories />
+
       <div className="container mx-auto px-4">
         <div className="flex items-center gap-4 py-8">
           <div className="h-px flex-1 bg-linear-to-r from-border/0 via-border to-border/0" />
           <span className="text-sm font-medium text-muted-foreground">
-            Featured Courses
+            Khóa học nổi bật
           </span>
           <div className="h-px flex-1 bg-linear-to-r from-border/0 via-border to-border/0" />
         </div>
@@ -31,6 +35,8 @@ export default async function Home() {
           ))}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

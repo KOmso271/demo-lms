@@ -6,6 +6,8 @@ import EnrollButton from "@/components/EnrollButton";
 import getCourseBySlug from "@/sanity/lib/courses/getCourseBySlug";
 import { isEnrolledInCourse } from "@/sanity/lib/student/isEnrolledInCourse";
 import { auth } from "@clerk/nextjs/server";
+import Footer from "@/components/home/Footer";
+import formatUsdToVnd from "@/lib/formatPrice";
 
 interface CoursePageProps {
   params: Promise<{
@@ -26,7 +28,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
   if (!course) {
     return (
       <div className="container mx-auto px-4 py-8 mt-16">
-        <h1 className="text-4xl font-bold">Course not found</h1>
+        <h1 className="text-4xl font-bold">Khóa học không tìm thấy</h1>
       </div>
     );
   }
@@ -44,15 +46,15 @@ export default async function CoursePage({ params }: CoursePageProps) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-5% from-gray-300/60 to-gray-300/20 dark:from-black dark:to-black/60" />
+        <div className="absolute inset-0 bg-linear-to-t from-5% from-white to-white/60 dark:from-black dark:to-black/60" />
         <div className="absolute inset-0 container mx-auto px-4 flex flex-col justify-end pb-12">
           <Link
             href="/"
             prefetch={false}
-            className="text-white mb-8 flex items-center hover:text-primary transition-colors w-fit"
+            className="text-black dark:text-white mb-8 flex items-center hover:text-primary transition-colors w-fit"
           >
             <ArrowLeft className="mr-2 h-5 w-5" />
-            Back to Courses
+            Quay lại các khóa học
           </Link>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
@@ -68,9 +70,11 @@ export default async function CoursePage({ params }: CoursePageProps) {
                 {course.description}
               </p>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:min-w-[300px]">
+            <div className="bg-black/20 dark:bg-white/10 backdrop-blur-sm rounded-lg p-6 md:min-w-[300px]">
               <div className="text-3xl font-bold text-black dark:text-white mb-4">
-                {course.price === 0 ? "Free" : `$${course.price}`}
+                {course.price === 0
+                  ? "Miễn phí"
+                  : `${formatUsdToVnd(Number(course.price))}`}
               </div>
               <EnrollButton courseId={course._id} isEnrolled={isEnrolled} />
             </div>
@@ -84,7 +88,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <div className="bg-card rounded-lg p-6 mb-8 border border-border">
-              <h2 className="text-2xl font-bold mb-4">Course Content</h2>
+              <h2 className="text-2xl font-bold mb-4">Nội dung khóa học</h2>
               <div className="space-y-4">
                 {course.modules?.map((module, index) => (
                   <div
@@ -125,7 +129,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
           {/* Sidebar */}
           <div>
             <div className="bg-card rounded-lg p-6 sticky top-4 border border-border">
-              <h2 className="text-xl font-bold mb-4">Instructor</h2>
+              <h2 className="text-xl font-bold mb-4">Người hướng dẫn</h2>
               {course.instructor && (
                 <div>
                   <div className="flex items-center gap-3 mb-4">
@@ -159,6 +163,8 @@ export default async function CoursePage({ params }: CoursePageProps) {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
