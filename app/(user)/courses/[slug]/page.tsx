@@ -128,7 +128,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
           {/* Sidebar */}
           <div>
-            <div className="bg-card rounded-lg p-6 sticky top-4 border border-border">
+            <div className="bg-card rounded-lg p-6 sticky top-20 border border-border">
               <h2 className="text-xl font-bold mb-4">Người hướng dẫn</h2>
               {course.instructor && (
                 <div>

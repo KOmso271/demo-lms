@@ -1,5 +1,6 @@
 "use client";
 
+import { createMomoCheckout } from "@/lib/momo/action";
 import { createStripeCheckout } from "@/lib/stripe/action";
 import { useUser } from "@clerk/nextjs";
 import { CheckCircle } from "lucide-react";
@@ -24,7 +25,8 @@ function EnrollButton({
         const userId = user?.id;
         if (!userId) return;
 
-        const { url } = await createStripeCheckout(courseId, userId);
+        // const { url } = await createStripeCheckout(courseId, userId);
+        const { url } = await createMomoCheckout(courseId, userId);
         if (url) {
           router.push(url);
         }

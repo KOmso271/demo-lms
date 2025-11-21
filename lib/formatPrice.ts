@@ -20,11 +20,14 @@ export type FormatUsdToVndOptions = {
  * formatUsdToVnd(10) -> "240.000 ₫" (with default rate 24000)
  * formatUsdToVnd("1,234.56", { rate: 23500, includeCurrency: false }) -> "29.012.616"
  */
+
+export const rateDefault = 24000;
+
 export function formatUsdToVnd(
   amountUsd: number | string,
   options: FormatUsdToVndOptions = {}
 ): string {
-  const { rate = 24000, includeCurrency = true, decimals = 0 } = options;
+  const { rate = rateDefault, includeCurrency = true, decimals = 0 } = options;
 
   // Normalize input (allow commas in strings)
   const num =
