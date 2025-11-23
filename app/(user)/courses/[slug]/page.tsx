@@ -46,7 +46,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-5% from-white to-white/60 dark:from-black dark:to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-5% from-white to-white/60 dark:from-black dark:to-black/60" />
         <div className="absolute inset-0 container mx-auto px-4 flex flex-col justify-end pb-12">
           <Link
             href="/"

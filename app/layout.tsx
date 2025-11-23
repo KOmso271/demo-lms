@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Courselly",
   description: "Your one-stop solution for all learning needs",
+  icons: {
+    icon: "/book-open.png",
+  },
 };
 
 export default async function RootLayout({
