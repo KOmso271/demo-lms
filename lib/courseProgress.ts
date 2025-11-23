@@ -13,8 +13,8 @@ export function calculateCourseProgress(
   completedLessons: GetCompletionsQueryResult["completedLessons"]
 ): number {
   const totalLessons = calculateTotalLessons(modules);
-  // const totalCompleted = completedLessons.length;
-  const totalCompleted = 0;
+  const totalCompleted = completedLessons.length;
+  // const totalCompleted = 0;
 
   return Math.round(
     totalLessons > 0 ? (totalCompleted / totalLessons) * 100 : 0

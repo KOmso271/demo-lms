@@ -97,7 +97,7 @@ export function LessonCompleteButton({
           ) : isPending ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              {isCompleted ? "Uncompleting..." : "Completing..."}
+              {isCompleted ? "Đang bỏ hoàn thành..." : "Đang hoàn thành..."}
             </>
           ) : isCompleted ? (
             <>
